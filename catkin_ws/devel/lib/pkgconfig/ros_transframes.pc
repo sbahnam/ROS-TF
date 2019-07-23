@@ -1,0 +1,8 @@
+prefix=/home/stavrow/ROS-TF/catkin_ws/devel
+
+Name: ros_transframes
+Description: Description of ros_transframes
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/stavrow/ROS-TF/catkin_ws/devel/lib 
+Requires: 
