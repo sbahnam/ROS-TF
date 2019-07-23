@@ -45,7 +45,7 @@ int main(int argc, char** argv){
         ros::Time now = ros::Time(0);
         listener.waitForTransform("/world", "/base_tf_enu", now, ros::Duration(1.0));
         listener.lookupTransform("/world", "/base_tf_enu", now, transform);
-        PublishNEDandNWU(transform); // publish NED and NWU when receiving (same rate)
+        publishNEDandNWU(transform); // publish NED and NWU when receiving (same rate)
         }
         catch (tf::TransformException ex) {
           ROS_ERROR("%s",ex.what());

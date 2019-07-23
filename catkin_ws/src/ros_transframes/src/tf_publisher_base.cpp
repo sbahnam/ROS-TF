@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-//#include <std_msgs/String.h>
 #include <tf/transform_broadcaster.h>
 //#include <math.h.>
 
@@ -10,9 +9,9 @@ void publishENU(double states[6]){
     double x = states[0];
     double y = states[1];
     double z = states[2];
-    double roll = states[3]*3.14/180;
-    double pitch = states[4]*3.14/180; //angles to radian
-    double yaw = states[5]*3.14/180;
+    double roll = states[3]*M_PI/180;
+    double pitch = states[4]*M_PI/180; //angles to radian
+    double yaw = states[5]*M_PI/180;
     
     static tf::TransformBroadcaster br;
     tf::Transform transform;
@@ -33,7 +32,6 @@ int main(int argc, char** argv){
     char inputchar[30];
     
     std::cout << "Give input (x, y, z, roll, pitch, yaw)"<<std::endl;
-    std::cout<<states[0]<<states[2]<<std::endl;
     std::cin.getline(inputchar, sizeof(inputchar));
     std::string inputstr(inputchar);
     std::string delimiter = ",";
@@ -44,12 +42,10 @@ int main(int argc, char** argv){
         inputstr.erase(0, inputstr.find(delimiter) + delimiter.length());
         states[i] =atof(valuestr.c_str());
     }
-    
-    std::cout<<states[0]<<states[1]<<states[2]<<states[3]<<states[4]<<states[5]<<std::endl;
 
     while(node.ok())
     {
-        PublishENU(states);
+        publishENU(states);
         rate.sleep();
     }
     return 0;
